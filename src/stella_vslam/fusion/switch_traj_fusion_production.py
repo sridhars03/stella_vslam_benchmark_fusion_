@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 
-#here include angle also-not just distance
+#TODO here include angle also-not just distance
 #Function to calculate ATE (between ground truth and estimated trajectory)
 def calculate_ate(trajectory_segment, ground_truth_segment):
     differences = trajectory_segment - ground_truth_segment
@@ -11,24 +11,26 @@ def calculate_ate(trajectory_segment, ground_truth_segment):
     ate = np.sqrt(np.mean(squared_errors))
     return ate
 
-#put this func in just one py file like "utils" and import in others
+#TODO put this func in just one py file like "utils" and import in others
 # Read the synchronized trajectory files
 def read_synchronized_trajectory(file_path):
     data = pd.read_csv(file_path, delim_whitespace=True, header=None)
     return data
 
-#test multiple values
+#TODO test multiple values
 sequence_length = 10  # Number of timestamps to compare at each step
 
-#get path as parse arguments
+#TODO get path as parse arguments
 synced_GT = read_synchronized_trajectory('/home/sridhar03/Downloads/new_traj_sync/mh05/synchronized_gt.txt')
 trajectory_orb = read_synchronized_trajectory('/home/sridhar03/Downloads/new_traj_sync/mh05/synchronized_trajectory_orb.txt')
 trajectory_openvslam = read_synchronized_trajectory('/home/sridhar03/Downloads/new_traj_sync/mh05/synchronized_trajectory_openvslam.txt')
 
-# Extract the timestamps from OpenVSLAM & ORB trajectory
+#TODO put this func in just one py file like "utils" and import in others
+#Extract the timestamps from OpenVSLAM & ORB trajectory
 timestamps_openvslam = trajectory_openvslam.iloc[:, 0].values
 timestamps_orb = trajectory_orb.iloc[:, 0].values
 
+#TODO put this func in just one py file like "utils" and import in others
 # Extract the trajectory data (excluding the timestamp)
 synced_GT_data = synced_GT.iloc[:, 1:].values
 trajectory_orb_data = trajectory_orb.iloc[:, 1:].values
@@ -80,8 +82,9 @@ else:
 #LOGIC #3
 
 
+#TODO get path as argument or save wherever it is run
 #Save the fused trajectory to a new file
 fused_trajectory_df = pd.DataFrame(fused_trajectory_with_timestamps)
 fused_trajectory_df.to_csv('/home/sridhar03/Downloads/new_traj_sync/mh05/fused_trajectory_switch.txt', sep=' ', header=False, index=False)
 
-print("*****")
+print("*****Unit test successful")
