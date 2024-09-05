@@ -34,6 +34,7 @@ def find_nearest_unique_timestamps(reference_timestamps, target_timestamps):
 trajectory_orb = read_trajectory('/home/sridhar03/Downloads/new_traj_sync/v101/trajectory_orb.txt')
 trajectory_openvslam = read_trajectory('/home/sridhar03/Downloads/new_traj_sync/v101/frame_trajectory.txt')
 
+#TODO generalize this.
 ######change to generalize to 10 digits
 trajectory_orb['timestamp'] = trajectory_orb['timestamp'].apply(lambda x: x / 1e9 if len(str(int(x))) > 10 else x)
 
