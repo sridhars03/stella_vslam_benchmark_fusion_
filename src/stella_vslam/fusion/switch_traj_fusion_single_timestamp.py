@@ -2,22 +2,31 @@
 import numpy as np
 import pandas as pd
 
+#LOGIC 1- to calculate ATE
+# #Function to calculate ATE (between ground truth and estimated trajectory)
+# def calculate_ate(trajectory_segment, ground_truth_segment):
+#     # Position ATE (x, y, z)
+#     position_differences = trajectory_segment[:, :3] - ground_truth_segment[:, :3]
+#     position_squared_errors = np.sum(position_differences**2, axis=1)
+#     position_ate = np.sqrt(np.mean(position_squared_errors))
+    
+#     # Orientation ATE (quaternion: qx, qy, qz, qw)
+#     orientation_differences = trajectory_segment[:, 3:] - ground_truth_segment[:, 3:]
+#     orientation_squared_errors = np.sum(orientation_differences**2, axis=1)
+#     orientation_ate = np.sqrt(np.mean(orientation_squared_errors))
+    
+#     # Combine position and orientation ATE (you can weight them if necessary)
+#     total_ate = position_ate + orientation_ate  # Or weighted combination
+#     return total_ate
+
+#LOGIC 2- to calculate ATE
 #Function to calculate ATE (between ground truth and estimated trajectory)
 def calculate_ate(trajectory_segment, ground_truth_segment):
     # Position ATE (x, y, z)
-    position_differences = trajectory_segment[:, :3] - ground_truth_segment[:, :3]
+    position_differences = trajectory_segment[:, :] - ground_truth_segment[:, :]
     position_squared_errors = np.sum(position_differences**2, axis=1)
-    position_ate = np.sqrt(np.mean(position_squared_errors))
-    
-    # Orientation ATE (quaternion: qx, qy, qz, qw)
-    orientation_differences = trajectory_segment[:, 3:] - ground_truth_segment[:, 3:]
-    orientation_squared_errors = np.sum(orientation_differences**2, axis=1)
-    orientation_ate = np.sqrt(np.mean(orientation_squared_errors))
-    
-    # Combine position and orientation ATE (you can weight them if necessary)
-    total_ate = position_ate + orientation_ate  # Or weighted combination
-    return total_ate
-
+    ate = np.sqrt(np.mean(position_squared_errors))
+    return ate
 
 #TODO put this func in just one py file like "utils" and import in others
 # Read the synchronized trajectory files
