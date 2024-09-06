@@ -52,7 +52,7 @@ ate_orb_high_count,ate_high_openvslam_count=0,0
 
 
 #loop through sequence lengths
-seq_len_list = np.arange(10,101,10)
+seq_len_list = np.arange(1,6)
 for sequence_length in seq_len_list:
     #iterate through the synced traj according to sequence_length
     for i in range(0, num_samples, sequence_length):
