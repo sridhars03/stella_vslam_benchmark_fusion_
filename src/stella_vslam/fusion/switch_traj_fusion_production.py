@@ -25,8 +25,6 @@ def read_synchronized_trajectory(file_path):
     data = pd.read_csv(file_path, delim_whitespace=True, header=None)
     return data
 
-# sequence_length = 10 #Number of timestamps to compare at each step
-
 #TODO get path as parse arguments
 synced_GT = read_synchronized_trajectory('/home/sridhar03/Downloads/new_traj_sync/mh01/synchronized_gt.txt')
 trajectory_orb = read_synchronized_trajectory('/home/sridhar03/Downloads/new_traj_sync/mh01/synchronized_trajectory_orb.txt')
